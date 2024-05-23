@@ -28,7 +28,7 @@ pipeline {
             steps{
             gitCheckout(
                 branch: "main",
-                url: "https://github.com/ganasai88/CI-CD-Project.git"
+                url: "https://github.com/ganes891/jenklib.git"
             )
             }
         }
