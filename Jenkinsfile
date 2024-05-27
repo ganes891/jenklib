@@ -11,7 +11,7 @@ pipeline {
         string(name: 'Region', description: "Region of ECR", defaultValue: 'us-east-1')
         string(name: 'ImageName', description: "name of the docker build", defaultValue: 'javaapp')
         string(name: 'ImageTag', description: "tag of the docker build", defaultValue: 'v1')
-        string(name: 'DockerHubUser', description: "name of the Application", defaultValue: 'ganasai88')
+        string(name: 'HubUser', description: "name of the Application", defaultValue: 'ganasai88')
         string(name: 'cluster', description: "name of the EKS Cluster", defaultValue: 'demo-cluster1')
     }
  
