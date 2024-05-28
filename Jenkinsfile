@@ -1,5 +1,5 @@
-@Library('Jenkins-shared-library') // Load the Kubernetes deployment library
-/*import com.example.kubernetes.*/
+@Library('Jenkins-shared-library')
+import com.example.kubernetes.*
 
 pipeline {
     agent any
