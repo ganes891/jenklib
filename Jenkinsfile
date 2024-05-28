@@ -1,4 +1,4 @@
-@Library('Jenkins-shared-library')
+@Library('Jenkins-shared-library') _
 //import com.example.kubernetes.*
 pipeline {
     agent any
