@@ -37,6 +37,6 @@ pipeline {
                     deployToKubernetes(deploymentName: 'myapp', image: DOCKER_IMAGE)
                 }
             }
-        }
-    }*/
+        }*/
+    }
 }
