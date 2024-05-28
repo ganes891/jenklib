@@ -19,14 +19,14 @@ pipeline {
         stage('Build dockerImage') {
             steps {
                 script {
-                    dockerBuild()
+                    dockerBuild(Project: PROJECT)
                 }
             }
         }
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    dockerImagePush()
+                    dockerImagePush(Project: PROJECT)
                 }
             }
         }
