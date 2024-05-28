@@ -8,6 +8,7 @@ pipeline {
         string(name: 'ImageName', description: "name of the docker build", defaultValue: 'javaapp')
         string(name: 'ImageTag', description: "tag of the docker build", defaultValue: 'v1')
         string(name: 'HubUser', description: "name of the Application", defaultValue: 'ganash891')
+        string(name: 'project', description: "name of the Application", defaultValue: 'myapp01')
     }
     environment {
         DOCKER_IMAGE = 'myapp01:latest'
@@ -18,14 +19,14 @@ pipeline {
         stage('Build dockerImage') {
             steps {
                 script {
-                    dockerBuild(image: DOCKER_IMAGE, project: PROJECT)
+                    dockerBuild()
                 }
             }
         }
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    dockerImagePush(image: DOCKER_IMAGE, project: PROJECT)
+                    dockerImagePush()
                 }
             }
         }

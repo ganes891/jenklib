@@ -1,4 +1,4 @@
-def call(String ImageTag, String hubUser){
+def call(String project, String ImageTag, String hubUser){
      withCredentials([usernamePassword(
              credentialsId: "hubUser",
              usernameVariable: "USER",
