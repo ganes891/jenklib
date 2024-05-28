@@ -16,6 +16,12 @@ pipeline {
     }
 
     stages {
+
+        stage('maven build') {
+            steps {
+                    mvnBuild()                
+            }
+        
         stage('Build dockerImage') {
             steps {
                     dockerBuild(PROJECT)                
