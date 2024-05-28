@@ -15,7 +15,7 @@ pipeline {
     }
 
     stages {
-        stage('Build and Push Docker Image') {
+        stage('Build dockerImage') {
             steps {
                 script {
                     dockerBuild(image: DOCKER_IMAGE, project: PROJECT)
