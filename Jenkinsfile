@@ -3,28 +3,30 @@ pipeline {
     agent any
     
     parameters {
-        string(name: 'ImageName', description: "name of the docker build", defaultValue: 'javaapp')
-        string(name: 'ImageTag', description: "tag of the docker build", defaultValue: 'v1')
+        string(name: 'imageName', description: "name of the docker build", defaultValue: 'javaapp')
+        string(name: 'imageTag', description: "tag of the docker build", defaultValue: 'v1')
         string(name: 'hubUser', description: "name of the Application", defaultValue: 'ganesh891')
-        string(name: 'Project', description: "name of the Application", defaultValue: 'myapp01')
+        string(name: 'project', description: "name of the Application", defaultValue: 'myapp01')
     }
     environment {
         DOCKER_IMAGE = 'myapp01:latest'
-        PROJECT = 'springboot'
+        PROJECT = 'myapp01'
+        HUBUSER = 'ganesh891'
+        IMAGETAG = 'v1'
     }
 
     stages {
         stage('Build dockerImage') {
             steps {
                 script {
-                   def dockerBuild(Project: PROJECT)
+                    dockerBuild.dockerBuild(Project: PROJECT)
                 }
             }
         }
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                   def dockerImagePush(Project: PROJECT)
+                   dockerImagePush.dockerImagePush(Project: PROJECT)
                 }
             }
         }
@@ -39,3 +41,6 @@ pipeline {
         }*/
     }
 }
+
+
+

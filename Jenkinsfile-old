@@ -181,3 +181,75 @@ pipeline {
        */ 
     }
 }
+
+
+=====
+
+code:
+
+// vars/customLibrary.groovy
+def buildDockerImage(String imageName, String tag) {
+    def image = docker.build("${imageName}:${tag}")
+        return image
+        }
+def pushDockerImage(String imageName, String tag, String registry, String credentialsId) {
+    docker.withRegistry("${registry}", "${credentialsId}") {
+            docker.image("${imageName}:${tag}").push()
+                }
+                }
+
+
+
+@Library('my-shared-library') _  // Replace 'my-shared-library' with the actual name of your shared library
+
+pipeline {
+    agent any
+    environment {
+            DOCKER_IMAGE = 'your-docker-image-name'
+                    DOCKER_REGISTRY = 'your-docker-registry-url'
+                            DOCKER_CREDENTIALS_ID = 'your-docker-credentials-id'
+                                }
+    stages {
+            stage('Checkout') {
+                        steps {
+                                        // Checkout source code from version control
+                                                        checkout scm
+                                                                    }
+                                                                            }
+        stage('Build') {
+                    steps {
+                                    script {
+                                                        // Use custom library to build Docker image
+                                                                            customLibrary.buildDockerImage(DOCKER_IMAGE, env.BUILD_NUMBER)
+                                                                                            }
+                                                                                                        }
+                                                                                                                }
+        stage('Test') {
+                    steps {
+                                    script {
+                                                        // Run tests within the Docker container
+                                                                            docker.image("${DOCKER_IMAGE}:${env.BUILD_NUMBER}").inside {
+                                                                                                    sh 'make test' // Replace with your test command
+                                                                                                                        }
+                                                                                                                                        }
+                                                                                                                                                    }
+                                                                                                                                                            }
+        stage('Push') {
+                    steps {
+                                    script {
+                                                        // Use custom library to push Docker image
+                                                                            customLibrary.pushDockerImage(DOCKER_IMAGE, env.BUILD_NUMBER, DOCKER_REGISTRY, DOCKER_CREDENTIALS_ID)
+                                                                                            }
+                                                                                                        }
+                                                                                                                }
+                                                                                                                    }
+    post {
+            always {
+                        // Clean up the workspace
+                                    cleanWs()
+                                            }
+                                                }
+                                                }
+                                                
+
+https://chatgpt.com/c/7c8ee984-cc03-4de1-9fa3-33c193572d2c
