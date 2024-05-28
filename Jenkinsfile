@@ -7,7 +7,7 @@ pipeline {
     parameters {
         string(name: 'ImageName', description: "name of the docker build", defaultValue: 'javaapp')
         string(name: 'ImageTag', description: "tag of the docker build", defaultValue: 'v1')
-        string(name: 'HubUser', description: "name of the Application", defaultValue: 'ganash891')
+        string(name: 'hubUser', description: "name of the Application", defaultValue: 'ganash891')
         string(name: 'Project', description: "name of the Application", defaultValue: 'myapp01')
     }
     environment {
