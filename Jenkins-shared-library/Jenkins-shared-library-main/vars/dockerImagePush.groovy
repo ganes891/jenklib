@@ -6,6 +6,5 @@ def call(project){
      )]) {
          sh "sudo docker login -u '$USER' -p '$PASS'"
      }
-     sh "sudo docker image push ${hubUser}/${project}:${imageTag}"
-     sh "sudo docker image push ${hubUser}/${project}:latest"   
+     sh "sudo docker image push ${hubUser}/${project}:${imageTag}"  
  }
