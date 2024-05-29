@@ -1,4 +1,4 @@
-def dockerImagePush(){
+def call(project){
      withCredentials([usernamePassword(
              credentialsId: "hubUser",
              usernameVariable: "USER",
