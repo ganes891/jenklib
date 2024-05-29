@@ -4,7 +4,7 @@ pipeline {
     
     parameters {
         string(name: 'imageName', description: "name of the docker build", defaultValue: 'javaapp')
-        string(name: 'imageTag', description: "tag of the docker build", defaultValue: 'v1')
+        string(name: 'imageTag', description: "tag of the docker build", defaultValue: 'v2')
         string(name: 'hubUser', description: "name of the Application", defaultValue: 'ganesh891')
         string(name: 'project', description: "name of the Application", defaultValue: 'myapp01')
     }
@@ -12,7 +12,7 @@ pipeline {
         DOCKER_IMAGE = 'myapp01:latest'
         PROJECT = 'myapp02'
         HUBUSER = 'ganesh891'
-        IMAGETAG = 'v2'
+        IMAGETAG = '${imageTag}'
         BRANCH = 'main'
     }
 
