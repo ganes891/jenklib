@@ -1,3 +1,3 @@
 def call(project){
-    sh "sudo mvn clean install"
+    sh "sudo /opt/maven/bin/mvn clean install"
 }
