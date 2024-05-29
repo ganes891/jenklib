@@ -10,9 +10,9 @@ pipeline {
     }
     environment {
         DOCKER_IMAGE = 'myapp01:latest'
-        PROJECT = 'myapp01'
+        PROJECT = 'myapp02'
         HUBUSER = 'ganesh891'
-        IMAGETAG = 'v1'
+        IMAGETAG = 'v2'
     }
 
     stages {
