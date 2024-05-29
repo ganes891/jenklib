@@ -27,11 +27,11 @@ pipeline {
                     dockerBuild(PROJECT)                
             }
         }
-       /* stage('Build and Push Docker Image') {
+        stage('Build and Push Docker Image') {
             steps {
                    dockerImagePush(PROJECT)
             }
-        }*/
+        }
 
        /* stage('Deploy to Kubernetes') {
             steps {
