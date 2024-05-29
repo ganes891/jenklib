@@ -1,4 +1,4 @@
-def dockerImagePush(String project, String imageTag, String hubUser){
+def dockerImagePush(project){
      withCredentials([usernamePassword(
              credentialsId: "hubUser",
              usernameVariable: "USER",
