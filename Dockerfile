@@ -1,4 +1,3 @@
-FROM openjdk:8-jdk-alpine
-WORKDIR /app
-COPY ./target/*.jar /app.jar
-CMD ["java", "-jar", "app.jar"]
+FROM adoptopenjdk/openjdk11:alpine-jre
+ADD target/springboot-example.jar app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
