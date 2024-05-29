@@ -13,6 +13,7 @@ pipeline {
         PROJECT = 'myapp02'
         HUBUSER = 'ganesh891'
         IMAGETAG = 'v2'
+        BRANCH = 'main'
     }
 
     stages {
