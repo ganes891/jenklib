@@ -12,8 +12,11 @@ pipeline {
         DOCKER_IMAGE = 'myapp01:latest'
         PROJECT = 'myapp02'
         HUBUSER = 'ganesh891'
-        IMAGETAG = '${imageTag}'
+        IMAGE_TAG = '${imageTag}'
         BRANCH = 'main'
+        AWS_ACCOUNT_ID= '599646583608'
+        AWS_DEFAULT_REGION= 'ap-southeast-1'
+        IMAGE_REPO_NAME= 'jenklib'
     }
 
     stages {
@@ -30,7 +33,7 @@ pipeline {
         }
         stage('Build and Push Docker Image') {
             steps {
-                   dockerImagePush(PROJECT)
+                   dockerImagePushEcr(PROJECT)
             }
         }
 
