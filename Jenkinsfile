@@ -21,11 +21,11 @@ pipeline {
 
     stages {
 
-        stage('maven build') {
+       /* stage('maven build') {
             steps {
                     mvnBuild(PROJECT)                
             }
-        }
+        }*/
         stage('Build dockerImage') {
             steps {
                     dockerBuild(PROJECT)                
