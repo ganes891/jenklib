@@ -51,3 +51,5 @@ Now we can cleanup by using below commands:
 
  sudo docker image tag ${hubUser}/${project} ${hubUser}/${project}:${imageTag}
  
+ https://medium.com/@andy001018/jenkins-cicd-deploy-laravel-using-aws-ecr-and-ecs-fe0f7103d13d
+ 
