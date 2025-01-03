@@ -53,3 +53,19 @@ Now we can cleanup by using below commands:
  
  https://medium.com/@andy001018/jenkins-cicd-deploy-laravel-using-aws-ecr-and-ecs-fe0f7103d13d
  
+
+ =====
+
+code:
+
+// vars/customLibrary.groovy
+def buildDockerImage(String imageName, String tag) {
+    def image = docker.build("${imageName}:${tag}")
+        return image
+        }
+def pushDockerImage(String imageName, String tag, String registry, String credentialsId) {
+    docker.withRegistry("${registry}", "${credentialsId}") {
+            docker.image("${imageName}:${tag}").push()
+                }
+                }
+https://chatgpt.com/c/7c8ee984-cc03-4de1-9fa3-33c193572d2c
