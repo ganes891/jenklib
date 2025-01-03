@@ -1,4 +1,21 @@
 @Library('Jenkins-shared-library') _
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+def call(String imageName, Map config=[:], Closure body={}) {
+  if (!config.dockerfile) {
+    config.dockerfile = "Dockerfile"
+  }
+  if (!config.registry) {
+    config.registry = ""
+  }
+  if (!config.credential) {
+    config.credential = "dockerhub-halkeye"
+  }
+  if (!config.mainBranch) {
+    config.mainBranch = "master"
+  }
+  
 pipeline {
     agent any
     
