@@ -83,8 +83,6 @@ aws configure list-profiles
 
 # Configure aws cli eksadmin1 Profile 
 aws configure --profile eksadmin1
-AWS Access Key ID: AKIASUF7HC7SYK3RO727
-AWS Secret Access Key: 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
 Default region: ap-southeast-1
 Default output format: json
 
