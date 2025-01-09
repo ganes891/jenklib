@@ -12,4 +12,4 @@ def call(project){
             }
      }
      //sh "aws eks --region ${AWS_DEFAULT_REGION} update-kubeconfig --name ${CLUSTER_NAME}"
- }
+ 
