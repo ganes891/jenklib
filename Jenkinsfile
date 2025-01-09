@@ -152,6 +152,7 @@ pipeline {
                }   
             }
         }
+        }
         
         
        /* stage('Connect to EKS cluster: Terraform'){
@@ -206,4 +207,4 @@ pipeline {
        
     }
  }
-}
+
