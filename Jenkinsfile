@@ -32,7 +32,7 @@ pipeline {
     stages{
          
         stage('Git Checkout'){
-                when{expression{params.action == "Destroy"}}    
+                when{expression{params.action == "buildonly"}}    
             steps{
             gitCheckout(
                 branch: "main",
