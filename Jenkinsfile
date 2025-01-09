@@ -16,9 +16,6 @@ pipeline {
     }
  
     environment{
-
-        ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
-        SECRET_KEY = credentials('AWS_SECRET_KEY_ID')
         DOCKER_IMAGE = 'myapp01'
         PROJECT = '${ImageName}'
         HUBUSER = 'ganesh891'
@@ -28,12 +25,13 @@ pipeline {
         AWS_DEFAULT_REGION= 'ap-southeast-1'
         IMAGE_REPO_NAME= 'dev-project/app01'
         CLUSTER_NAME = 'xyz'
+        EKS_IAAC_DIR = 'infra/eks-admin-tf/01-ekscluster-terraform-manifests'
     }
    
     stages{
          
         stage('Git Checkout'){
-                when{expression{params.action == "buildonly"}}    
+                when{expression{params.action == "create"}}    
             steps{
             gitCheckout(
                 branch: "main",
@@ -135,22 +133,24 @@ pipeline {
                }
             }
         } */
-       /* 
-        stage('Create EKS cluster: Terraform'){
-              when{expression{params.action == "create"}}       
+       
+        stage('Create EKS cluster using IAAC: Terraform'){
+              when{expression{params.action == "buildonly"}}       
             steps{
                script{
-                   dir("eks_module")
+                   dir("${EKS_IAAC_DIR}")
                    { 
                     sh """
                           terraform init 
-                          terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars
-                          terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars --auto-approve
+                          #terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars
+                          terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' 
+                          #terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars --auto-approve
+                          terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --auto-approve
                       """
                    }
                }   
             }
-        }*/
+        }
         
         
        /* stage('Connect to EKS cluster: Terraform'){
