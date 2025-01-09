@@ -152,7 +152,7 @@ pipeline {
         }*/
         
         
-        stage('Connect to EKS cluster: Terraform'){
+       /* stage('Connect to EKS cluster: Terraform'){
               when{expression{params.action == "create"}}       
             steps{
                script{
@@ -164,7 +164,19 @@ pipeline {
                   """
                }   
             }
+        }*/
+
+        stage('Connect to EKS cluster: Terraform'){
+              when{expression{params.action == "create"}}       
+            steps{
+               script{
+                   
+                    //dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+                    connectAws(PROJECT)
+               }
+            }
         }
+
         
         stage('Deployment of EKS cluster: Terraform'){
               when{expression{params.action == "create"}}       
