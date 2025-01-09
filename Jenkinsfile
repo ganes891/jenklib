@@ -22,7 +22,7 @@ pipeline {
         DOCKER_IMAGE = 'myapp01'
         PROJECT = '${ImageName}'
         HUBUSER = 'ganesh891'
-        IMAGE_TAG = '${imageTag}'
+        IMAGE_TAG = '${ImageTag}'
         BRANCH = 'main'
         AWS_ACCOUNT_ID= '599646583608'
         AWS_DEFAULT_REGION= 'ap-southeast-1'
