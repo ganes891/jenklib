@@ -6,8 +6,8 @@ def call(project){
      )]) {
         sh "aws configure set aws_access_key_id '$USER'"
         sh "aws configure set aws_secret_access_key '$PASS'"
-        sh "aws configure set region ${AWS_REGION}"
+        sh "aws configure set region $AWS_REGION"
         //sh aws eks --region ${AWS_REGION} update-kubeconfig --name ${CLUSTER_NAME}
      }
-     sh "aws eks --region ${AWS_DEFAULT_REGION} update-kubeconfig --name ${CLUSTER_NAME}"
+     sh "aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $CLUSTER_NAME"
  }

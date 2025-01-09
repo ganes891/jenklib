@@ -27,6 +27,7 @@ pipeline {
         AWS_ACCOUNT_ID= '599646583608'
         AWS_DEFAULT_REGION= 'ap-southeast-1'
         IMAGE_REPO_NAME= 'dev-project/app01'
+        CLUSTER_NAME = 'xyz'
     }
    
     stages{
