@@ -100,7 +100,8 @@ pipeline {
                script{
                    
                     //dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                    dockerBuild(PROJECT)
+                    //dockerBuild(PROJECT)
+                    sh 'pwd'
                }
             }
         }
