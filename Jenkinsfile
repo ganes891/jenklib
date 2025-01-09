@@ -141,18 +141,10 @@ pipeline {
                    dir("${EKS_IAAC_DIR}")
                    { 
                     createInfraAws(PROJECT)
-                    /*sh """
-                          terraform init 
-                          #terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars
-                          terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' 
-                          #terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars --auto-approve
-                          terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --auto-approve
-                      """
-                   }*/
                }   
             }
         }
-        }
+      }
         
         
        /* stage('Connect to EKS cluster: Terraform'){
@@ -204,7 +196,7 @@ pipeline {
                }   
             }
         }
-       
     }
- }
+}
+
 

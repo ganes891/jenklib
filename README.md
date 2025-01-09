@@ -69,3 +69,12 @@ def pushDockerImage(String imageName, String tag, String registry, String creden
                 }
                 }
 https://chatgpt.com/c/7c8ee984-cc03-4de1-9fa3-33c193572d2c
+
+                    /*sh """
+                          terraform init 
+                          #terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars
+                          terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' 
+                          #terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --var-file=./config/terraform.tfvars --auto-approve
+                          terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' -var 'region=${params.Region}' --auto-approve
+                      """
+                   }*/
