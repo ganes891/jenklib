@@ -87,7 +87,8 @@ pipeline {
             steps{
                script{
                    
-                    mvnBuild()
+                    //mvnBuild()
+                    sh "pwd"
                }
             }
         }
