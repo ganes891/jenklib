@@ -19,8 +19,8 @@ pipeline {
 
         ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
         SECRET_KEY = credentials('AWS_SECRET_KEY_ID')
-        DOCKER_IMAGE = 'myapp01:latest'
-        PROJECT = '${ImageName}'
+        DOCKER_IMAGE = 'myapp01'
+        APP = '${ImageName}'
         HUBUSER = 'ganesh891'
         IMAGE_TAG = '${imageTag}'
         BRANCH = 'main'
