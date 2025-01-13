@@ -6,8 +6,7 @@ def call(project){
      )]) {
             sh """
                    terraform init 
-                   terraform plan -var 'access_key=$USER' -var 'secret_key=$PASS' -var 'region=${AWS_DEFAULT_REGION}' 
-                   #terraform apply -var 'access_key=$USER' -var 'secret_key=$PASS' -var 'region=${AWS_DEFAULT_REGION}' --auto-approve
+                   terraform plan 
                """
             }
      }

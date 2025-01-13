@@ -25,7 +25,7 @@ pipeline {
         AWS_DEFAULT_REGION= 'ap-southeast-1'
         IMAGE_REPO_NAME= 'dev-project/app01'
         CLUSTER_NAME = 'xyz'
-        EKS_IAAC_DIR = 'infra/eks-admin-tf/01-ekscluster-terraform-manifests'
+        EKS_TF_DIR = 'infra/eks-admin-tf/01-ekscluster-terraform-manifests'
     }
    
     stages{
@@ -133,12 +133,23 @@ pipeline {
                }
             }
         } */
-       
+         stage('Connect to EKS cluster: Terraform'){
+              when{expression{params.action == "create"}}       
+            steps{
+               script{
+                   
+                    //dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+                    connectAws(PROJECT)
+               }
+            }
+        }
+
+
         stage('Create EKS cluster using IAAC: Terraform'){
               when{expression{params.action == "buildonly"}}       
             steps{
                script{
-                   dir("${EKS_IAAC_DIR}")
+                   dir("${EKS_TF_DIR}")
                    { 
                     createInfraAws(PROJECT)
                }   
@@ -161,16 +172,6 @@ pipeline {
             }
         }*/
 
-        stage('Connect to EKS cluster: Terraform'){
-              when{expression{params.action == "create"}}       
-            steps{
-               script{
-                   
-                    //dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                    connectAws(PROJECT)
-               }
-            }
-        }
 
         
         stage('Deployment of EKS cluster: Terraform'){
