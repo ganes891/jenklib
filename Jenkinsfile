@@ -146,7 +146,7 @@ pipeline {
 
 
         stage('Create EKS cluster using IAAC: Terraform'){
-              when{expression{params.action == "buildonly"}}       
+              when{expression{params.action == "create"}}       
             steps{
                script{
                    dir("${EKS_TF_DIR}")
