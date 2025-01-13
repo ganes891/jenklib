@@ -5,7 +5,7 @@ def call(project){
              passwordVariable: "PASS"
      )]) {
             sh """
-              
+                   terrafrom init
                    terraform plan 
                """
             }
