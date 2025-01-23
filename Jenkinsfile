@@ -26,6 +26,7 @@ pipeline {
         IMAGE_REPO_NAME= 'dev-project/app01'
         CLUSTER_NAME = 'xyz'
         EKS_TF_DIR = 'infra/eks-admin-tf/01-ekscluster-terraform-manifests'
+        GITHUB_CREDENTIALS = 'github-credentials'
     }
    
     stages{
@@ -39,6 +40,12 @@ pipeline {
             )
             }
         }
+
+
+        environment {
+    GITHUB_CREDENTIALS = 'github-credentials'
+}
+git branch: 'main', credentialsId: env.GITHUB_CREDENTIALS, url: 'https://github.com/<userName>/<repo>'
          /* 
        stage('Unit Test maven'){
                when{expression{params.action == "create"}}      
