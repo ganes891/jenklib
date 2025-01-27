@@ -1,4 +1,4 @@
-def call(Map stageParams) {
+def call(project) {
   def branch = env.BRANCH_NAME
   def url = env.GIT_URL
   def creds = env.GITHUB_CREDENTIALS
