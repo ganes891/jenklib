@@ -36,7 +36,7 @@ pipeline {
                 when{expression{params.action == "create"}}    
             steps{
               script{
-                git branch: 'main', credentialsId: env.GITHUB_CREDENTIALS, url: 'https://github.com/ganes891/jenklib.git'
+                git branch: env.${BRANCH}, credentialsId: env.${GITHUB_CREDENTIALS}, url: 'https://github.com/ganes891/jenklib.git'
               }
            /* gitCheckout(
                 branch: "main",
