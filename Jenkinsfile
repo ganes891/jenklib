@@ -27,7 +27,8 @@ pipeline {
         CLUSTER_NAME = 'xyz'
         EKS_TF_DIR = 'infra/eks-admin-tf/01-ekscluster-terraform-manifests'
         GITHUB_CREDENTIALS = '9db7a662-10fb-49ba-8b48-b9adcd66236d'
-        APP_REPO = 'ganes891/jenklib.git'
+        //APP_REPO = 'ganes891/jenklib.git'
+        GIT_URL = 'https://github.com/ganes891/jenklib.git'
     }
    
     stages{
@@ -37,12 +38,10 @@ pipeline {
             steps{
               script{
                 //git branch: "${BRANCH}", credentialsId: "${GITHUB_CREDENTIALS}", url: 'https://github.com/ganes891/jenklib.git'
-                gitCheckoutNew(PROJECT)
+                gitCheckout()
               }
             }
         }
-
-    //git branch: 'main', credentialsId: env.GITHUB_CREDENTIALS, url: 'https://github.com/ganes891/jenklib.git'
          /* 
        stage('Unit Test maven'){
                when{expression{params.action == "create"}}      
