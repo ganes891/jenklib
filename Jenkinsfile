@@ -26,7 +26,8 @@ pipeline {
         IMAGE_REPO_NAME= 'dev-project/app01'
         CLUSTER_NAME = 'xyz'
         EKS_TF_DIR = 'infra/eks-admin-tf/01-ekscluster-terraform-manifests'
-        GITHUB_CREDENTIALS = 'github-credentials'
+        GITHUB_CREDENTIALS = '9db7a662-10fb-49ba-8b48-b9adcd66236d'
+        APP_REPO = 'ganes891/jenklib.git'
     }
    
     stages{
@@ -34,18 +35,17 @@ pipeline {
         stage('Git Checkout'){
                 when{expression{params.action == "create"}}    
             steps{
-            gitCheckout(
+              script{
+                git branch: 'main', credentialsId: env.GITHUB_CREDENTIALS, url: 'https://github.com/ganes891/jenklib.git'
+              }
+           /* gitCheckout(
                 branch: "main",
                 url: "https://github.com/ganes891/jenklib.git"
-            )
+            )*/
             }
         }
 
-
-        environment {
-    GITHUB_CREDENTIALS = 'github-credentials'
-}
-git branch: 'main', credentialsId: env.GITHUB_CREDENTIALS, url: 'https://github.com/<userName>/<repo>'
+    //git branch: 'main', credentialsId: env.GITHUB_CREDENTIALS, url: 'https://github.com/ganes891/jenklib.git'
          /* 
        stage('Unit Test maven'){
                when{expression{params.action == "create"}}      
