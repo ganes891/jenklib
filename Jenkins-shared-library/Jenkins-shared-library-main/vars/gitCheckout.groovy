@@ -1,4 +1,4 @@
-def call(Map stageParams) {
+def call(project) {
   def branch = env.BRANCH_NAME
   def url = env.GIT_URL
     checkout([
@@ -8,3 +8,4 @@ def call(Map stageParams) {
     ])
   }
   
+  #Map stageParams
