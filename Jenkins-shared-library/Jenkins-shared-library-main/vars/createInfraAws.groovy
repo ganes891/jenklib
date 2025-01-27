@@ -5,8 +5,8 @@ def call(project){
              passwordVariable: "PASS"
      )]) {
             sh """
-                   terraform init
-                   terraform plan 
+                   pwd
+
                """
             }
      }
