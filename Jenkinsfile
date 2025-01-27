@@ -36,12 +36,9 @@ pipeline {
                 when{expression{params.action == "create"}}    
             steps{
               script{
-                git branch: "${BRANCH}", credentialsId: "${GITHUB_CREDENTIALS}", url: 'https://github.com/ganes891/jenklib.git'
+                //git branch: "${BRANCH}", credentialsId: "${GITHUB_CREDENTIALS}", url: 'https://github.com/ganes891/jenklib.git'
+                gitCheckoutNew(PROJECT)
               }
-           /* gitCheckout(
-                branch: "main",
-                url: "https://github.com/ganes891/jenklib.git"
-            )*/
             }
         }
 
@@ -182,7 +179,7 @@ pipeline {
 
         
         stage('Deployment of EKS cluster: Terraform'){
-              when{expression{params.action == "create"}}       
+              when{expression{params.action == "delete"}}       
             steps{
                script{
                     
