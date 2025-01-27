@@ -160,8 +160,11 @@ pipeline {
             }
         }
       }
-        
-        
+      stage('cleanup workspace'){
+        steps{
+        cleanWs()
+        }
+      }
        /* stage('Connect to EKS cluster: Terraform'){
               when{expression{params.action == "create"}}       
             steps{
