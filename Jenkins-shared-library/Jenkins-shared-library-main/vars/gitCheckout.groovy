@@ -5,8 +5,8 @@ def call(project) {
 
     checkout([
         $class: 'GitSCM',
-        branches: [[name:  stageParams.branch ]],
-        userRemoteConfigs: [[ url: stageParams.url , credentialsId: stageParams.creds]]
+        branches: [[name: ${BRANCH_NAME} ]],
+        userRemoteConfigs: [[ url: ${GIT_URL} , credentialsId: ${GITHUB_CREDENTIAL}]]
     ])
   }
   

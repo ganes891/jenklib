@@ -26,7 +26,7 @@ pipeline {
         IMAGE_REPO_NAME= 'dev-project/app01'
         CLUSTER_NAME = 'xyz'
         EKS_TF_DIR = 'infra/eks-admin-tf/01-ekscluster-terraform-manifests'
-        GITHUB_CREDENTIALS = '9db7a662-10fb-49ba-8b48-b9adcd66236d'
+        GITHUB_CREDENTIAL = '9db7a662-10fb-49ba-8b48-b9adcd66236d'
         //APP_REPO = 'ganes891/jenklib.git'
         GIT_URL = 'https://github.com/ganes891/jenklib.git'
     }
