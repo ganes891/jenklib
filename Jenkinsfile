@@ -5,7 +5,8 @@ pipeline {
     agent any
 
     parameters
-    {
+    {   
+        choice(name: 'CloudName', choices: 'AWS\nAZURE', description: 'choose the cloud platform')
         choice(name: 'Action', choices: 'create\ndelete\nbuildonly', description: 'choose create/Destroy')
         string(name: 'aws_account_id', description: " AWS Account ID", defaultValue: '599646583608')
         string(name: 'Region', description: "Region of ECR", defaultValue: 'ap-southeast-1')
