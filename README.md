@@ -105,3 +105,6 @@ sudo docker run --detach \
   gitlab/gitlab-ce:17.7.0-ce.0
   
     #Map stageParams
+
+Parameterized declarative pipeline as a SL
+    https://johnson-tito.medium.com/streamlining-your-jenkins-pipeline-with-shared-libraries-b02c5987c55f
