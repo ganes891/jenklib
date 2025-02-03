@@ -84,10 +84,6 @@ https://chatgpt.com/c/7c8ee984-cc03-4de1-9fa3-33c193572d2c
 -var 'access_key=$USER' -var 'secret_key=$PASS' -var 'region=${AWS_DEFAULT_REGION}' 
                    #terraform apply -var 'access_key=$USER' -var 'secret_key=$PASS' -var 'region=${AWS_DEFAULT_REGION}' --auto-approve
                    
-
-
-
-
 #####
 gitlab setup:
 
