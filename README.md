@@ -84,23 +84,3 @@ https://chatgpt.com/c/7c8ee984-cc03-4de1-9fa3-33c193572d2c
 -var 'access_key=$USER' -var 'secret_key=$PASS' -var 'region=${AWS_DEFAULT_REGION}' 
                    #terraform apply -var 'access_key=$USER' -var 'secret_key=$PASS' -var 'region=${AWS_DEFAULT_REGION}' --auto-approve
                    
-#####
-gitlab setup:
-
-
-export GITLAB_HOME=/var/opt/gitlab
-
-sudo docker run --detach \
-  --hostname 10.12.201.178 \
-  --publish 443:443 --publish 8081:80 --publish 22:22 \
-  --name gitlab \
-  --restart always \
-  --volume $GITLAB_HOME/config:/etc/gitlab \
-  --volume $GITLAB_HOME/logs:/var/log/gitlab \
-  --volume $GITLAB_HOME/data:/var/opt/gitlab \
-  gitlab/gitlab-ce:17.7.0-ce.0
-  
-    #Map stageParams
-
-Parameterized declarative pipeline as a SL
-    https://johnson-tito.medium.com/streamlining-your-jenkins-pipeline-with-shared-libraries-b02c5987c55f

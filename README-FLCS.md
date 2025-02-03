@@ -5,6 +5,7 @@ IP : 10.12.201.178
 Hostname: sgctcrhclient02
 Username: appuser
 pa: ********
+root: Feb@2025
 os: Red Hat Enterprise Linux release 8.4 (Ootpa)
 CPU: 8
 RAM: 32G
@@ -60,5 +61,5 @@ sudo docker run --detach \
 Parameterized declarative pipeline as a SL
  https://johnson-tito.medium.com/streamlining-your-jenkins-pipeline-with-shared-libraries-b02c5987c55f
 
-###
+####
 
