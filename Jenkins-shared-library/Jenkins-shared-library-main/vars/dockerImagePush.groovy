@@ -4,7 +4,8 @@ def call(project){
              usernameVariable: "USER",
              passwordVariable: "PASS"
      )]) {
-         sh "sudo docker login -u '$USER' -p '$PASS'"
+         sh "sudo podman login -u '$USER' -p '$PASS'"
      }
-     sh "sudo docker image push ${hubUser}/${project}:${imageTag}"  
+     sh "sudo podman image push ${hubUser}/${project}:${imageTag}"  
+     sudo "podman push quay.io/ganesan_kandasamy/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
  }

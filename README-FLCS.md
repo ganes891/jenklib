@@ -10,7 +10,7 @@ os: Red Hat Enterprise Linux release 8.4 (Ootpa)
 CPU: 8
 RAM: 32G
 App filesystem: /data
- 
+
  
 Jankins details: 
 Jenkins : http://10.12.201.178:8080/manage/
@@ -62,4 +62,25 @@ Parameterized declarative pipeline as a SL
  https://johnson-tito.medium.com/streamlining-your-jenkins-pipeline-with-shared-libraries-b02c5987c55f
 
 ####
+Quay.io
+podman login -u='ganesan_kandasamy+ganesh891' -p='XQM76MUEDN3DUQKJBDAWRJA87EDF0JE4LJ9CAC3QHDR9O1NJKJUNCNEKJ3WN798Q' quay.io
+
+#### SC loan### 
+email for queries: 
+21700$
+6month -1.65% 
+amount fee - 358.05$
+march 16th statement onboard -> min+svc fee
+april 7th is due  
+
+aug 16th statement --> min pay on 7th of Sep
+16h SEP is expire days
+
+fast transfer dbs
+======
+
+9 months -2.5%
+amount fee - 542.50
+
+
 

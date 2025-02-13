@@ -22,12 +22,15 @@ pipeline {
         BRANCH = 'main'
         AWS_ACCOUNT_ID= '599646583608'
         AWS_DEFAULT_REGION= 'ap-southeast-1'
-        IMAGE_REPO_NAME= 'dev-project/app01'
+        //IMAGE_REPO_NAME= 'dev-project/app01'
+        IMAGE_REPO_NAME= 'ada01'
         CLUSTER_NAME = 'xyz'
         EKS_TF_DIR = 'infra/eks-admin-tf/01-ekscluster-terraform-manifests'
         GITHUB_CREDENTIAL = '9db7a662-10fb-49ba-8b48-b9adcd66236d'
         //APP_REPO = 'ganes891/jenklib.git'
         GIT_URL = 'https://github.com/ganes891/jenklib.git'
+        HUB_URL = 'https://quay.io/repository/ganesan_kandasamy/'
+        HUB_REPO = 'ada01'
     }
    
     stages{
