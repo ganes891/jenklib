@@ -65,22 +65,7 @@ Parameterized declarative pipeline as a SL
 Quay.io
 podman login -u='ganesan_kandasamy+ganesh891' -p='XQM76MUEDN3DUQKJBDAWRJA87EDF0JE4LJ9CAC3QHDR9O1NJKJUNCNEKJ3WN798Q' quay.io
 
-#### SC loan### 
-email for queries: 
-21700$
-6month -1.65% 
-amount fee - 358.05$
-march 16th statement onboard -> min+svc fee
-april 7th is due  
 
-aug 16th statement --> min pay on 7th of Sep
-16h SEP is expire days
-
-fast transfer dbs
-======
-
-9 months -2.5%
-amount fee - 542.50
 
 
 
