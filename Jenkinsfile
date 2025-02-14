@@ -119,22 +119,22 @@ pipeline {
             }
         }*/
         stage('Docker ECR Image Push'){
-              when{expression{params.action == "create"}}       
+              when{expression{params.platform == "aws"}}       
             steps{
                script{
                    
-                    dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+                    dockerImagePushEcr("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                     
                }
             }
         }
-        stage('Docker Quay Image Push'){
-              when{expression{params.action == "create"}}       
+        stage('Docker Quay Registry Image Push'){
+              when{expression{params.platform == "VM"}}       
             steps{
                script{
                    
                     //dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                    dockerImagePushEcr(PROJECT)
+                    dockerImagePush(PROJECT)
                }
             }
         }
@@ -152,15 +152,15 @@ pipeline {
             steps{
                script{
                    
-                    //dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                    connectAws(PROJECT)
+                    //connectAws(PROJECT)
+                    sh 'pwd'
                }
             }
         }
 
 
         stage('Create EKS cluster using IAAC: Terraform'){
-              when{expression{params.action == "create"}}       
+              when{expression{params.action == ""}}       
             steps{
                script{
                    dir("${EKS_TF_DIR}")
