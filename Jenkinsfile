@@ -91,7 +91,7 @@ pipeline {
             steps{
                script{
                    
-                    mvnBuild()
+                    //mvnBuild()
                     sh "pwd"
                }
             }
@@ -104,7 +104,8 @@ pipeline {
                script{
                    
                     //dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                    podmanBuild(PROJECT)
+                    //podmanBuild(PROJECT)
+                    sh "date"
                }
             }
         }
