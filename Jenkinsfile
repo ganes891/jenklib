@@ -103,8 +103,7 @@ pipeline {
                script{
                    
                     //dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                    //dockerBuild(PROJECT)
-                    sh 'pwd'
+                    dockerBuild(PROJECT)
                }
             }
         }
