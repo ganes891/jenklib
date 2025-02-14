@@ -39,7 +39,8 @@ pipeline {
                 when{expression{params.action == "create"}}    
             steps{
               script{
-                gitCheckout(project)
+                //gitCheckout(project)
+                sh 'pwd'
               }
             }
         }
