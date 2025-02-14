@@ -22,7 +22,7 @@ pipeline {
         BRANCH = 'main'
         AWS_ACCOUNT_ID= '599646583608'
         AWS_DEFAULT_REGION= 'ap-southeast-1'
-        //IMAGE_REPO_NAME= 'dev-project/app01'
+        AWS_IMAGE_REPO_NAME= 'dev-project/app01'
         //IMAGE_NAME= 'ada01'
         CLUSTER_NAME = 'xyz'
         EKS_TF_DIR = 'infra/eks-admin-tf/01-ekscluster-terraform-manifests'
