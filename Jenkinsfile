@@ -44,7 +44,7 @@ pipeline {
             }
         }
          /* 
-       stage('Unit Test maven'){
+       stage('Unit Testn maven'){
                when{expression{params.action == "create"}}      
             steps{
                script{
