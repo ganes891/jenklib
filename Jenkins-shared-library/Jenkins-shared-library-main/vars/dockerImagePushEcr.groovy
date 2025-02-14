@@ -1,7 +1,7 @@
 
 def call(project){
      withCredentials([usernamePassword(
-             credentialsId: "hubUser",
+             credentialsId: "QuayUser",
              usernameVariable: "USER",
              passwordVariable: "PASS"
      )]) {
