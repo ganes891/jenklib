@@ -172,7 +172,8 @@ pipeline {
       }
       stage('cleanup workspace'){
         steps{
-        cleanWs()
+       // cleanWs()
+       sh 'pwd'
         }
       }
        /* stage('Connect to EKS cluster: Terraform'){
