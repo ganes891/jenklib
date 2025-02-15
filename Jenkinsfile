@@ -7,7 +7,7 @@ pipeline {
     parameters
     {   
         choice(name: 'platform', choices: 'AWS\nAZURE\nVM', description: 'choose the cloud platform')
-        choice(name: 'action', choices: 'create\ndelete\nbuildonly', description: 'choose create/Destroy')
+        choice(name: 'action', choices: 'BuildAndDeploy\ndelete\nDeployOnly', description: 'choose BuildAndDeploy/Destroy')
         string(name: 'aws_account_id', description: " AWS Account ID", defaultValue: '599646583608')
         string(name: 'Region', description: "Region of ECR", defaultValue: 'ap-southeast-1')
         string(name: 'ImageName', description: "name of the docker build", defaultValue: 'myapp01')
@@ -34,8 +34,8 @@ pipeline {
    
     stages{
          
-        stage('Git Checkout'){
-                when{expression{params.action == "create"}}    
+      stage('Git Checkout'){
+                when{expression{params.action == "BuildAndDeploy"}}    
             steps{
               script{
                 //gitCheckout(project)
@@ -43,30 +43,9 @@ pipeline {
               }
             }
         }
-         /* 
-       stage('Unit Testn maven'){
-               when{expression{params.action == "create"}}      
-            steps{
-               script{
-                   
-                   mvnTest()
-               }
-            }
-        }*/
-       
-       /* stage('Integration Test maven'){
-              when{expression{params.action == "create"}}       
-            steps{
-               script{
-                   
-                   mvnIntegrationTest()
-               }
-            }
-        }*/
-        
-        
-        /* stage('Static Code Analysis: Sonarqube'){
-               when{expression{params.action == "create"}}      
+      
+      /* stage('Static Code Analysis: Sonarqube'){
+               when{expression{params.action == "BuildAndDeploy"}}      
             steps{
                script{
                    def SonarQubecredentialsId = 'SonarQubeapi'
@@ -76,7 +55,7 @@ pipeline {
         }
        
        stage('Quality Gate status check: Sonarqube'){
-               when{expression{params.action == "create"}}      
+               when{expression{params.action == "BuildAndDeploy"}}      
             steps{
                script{
                    def SonarQubecredentialsId = 'SonarQubeapi'
@@ -85,8 +64,8 @@ pipeline {
             }
         }*/
         
-        stage('Maven build: maven'){
-              when{expression{params.action == "create"}}       
+      stage('Maven build: maven'){
+              when{expression{params.action == "BuildAndDeploy"}}       
             steps{
                script{
                    
@@ -96,9 +75,8 @@ pipeline {
             }
         }
         
-         
-        stage('Docker Image Build'){
-              when{expression{params.action == "create"}}       
+      stage('Docker Image Build'){
+              when{expression{params.action == "BuildAndDeploy"}}       
             steps{
                script{
                    
@@ -108,27 +86,7 @@ pipeline {
                }
             }
         }
-        
-        /*stage('Docker Image scan'){
-              when{expression{params.action == "create"}}       
-            steps{
-               script{
-                   
-                    dockerImageScan("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-               }
-            }
-        }*/
-        stage('Docker ECR Image Push'){
-              when{expression{params.platform == "aws"}}       
-            steps{
-               script{
-                   
-                    dockerImagePushEcr("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-                    
-               }
-            }
-        }
-        stage('Docker Quay Registry Image Push'){
+      stage('Docker Quay Registry Image Push'){
               when{expression{params.platform == "VM"}}       
             steps{
                script{
@@ -138,17 +96,20 @@ pipeline {
                }
             }
         }
-        /*stage('Docker Image clean'){
-              when{expression{params.action == "create"}}       
+        
+      stage('AWS ECR Image Push'){
+              when{expression{params.platform == "AWS"}}       
             steps{
                script{
                    
-                    dockerImageClean("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+                    dockerImagePushEcr("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+                    
                }
             }
-        } */
-         stage('Connect to EKS cluster: Terraform'){
-              when{expression{params.action == "create"}}       
+        }
+
+      stage('Connect to EKS cluster: Terraform'){
+              when{expression{params.action == "AWS"}}       
             steps{
                script{
                    
@@ -159,13 +120,13 @@ pipeline {
         }
 
 
-        stage('Create EKS cluster using IAAC: Terraform'){
-              when{expression{params.action == "buildonly"}}       
+      stage('BuildAndDeploy EKS cluster using IAAC: Terraform'){
+            when{expression{params.action == "AWS"}}       
             steps{
                script{
                    dir("${EKS_TF_DIR}")
                    { 
-                    createInfraAws(PROJECT)
+                    BuildAndDeployInfraAws(PROJECT)
                }   
             }
         }
@@ -177,7 +138,7 @@ pipeline {
         }
       }
        /* stage('Connect to EKS cluster: Terraform'){
-              when{expression{params.action == "create"}}       
+              when{expression{params.action == "BuildAndDeploy"}}       
             steps{
                script{
                   sh """
@@ -189,11 +150,8 @@ pipeline {
                }   
             }
         }*/
-
-
-        
         stage('Deployment of EKS cluster: Terraform'){
-              when{expression{params.action == "delete"}}       
+              when{expression{params.action == "DeployOnly" || params.action == "BuildAndDeploy" }}       
             steps{
                script{
                     
