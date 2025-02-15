@@ -91,7 +91,7 @@ pipeline {
                script{
                    
                     //mvnBuild()
-                    //sh "pwd"
+                    sh "pwd"
                }
             }
         }
