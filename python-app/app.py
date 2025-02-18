@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -15,10 +15,15 @@ def create_database():
     with app.app_context():
         db.create_all()
 
+@app.route('/')
+def index():
+    products = Product.query.all()
+    return render_template('index.html', products=products)
+
 @app.route('/product', methods=['POST'])
 def add_product():
-    data = request.json
-    new_product = Product(name=data['name'], stock=data.get('stock', 0))
+    data = request.form
+    new_product = Product(name=data['name'], stock=int(data.get('stock', 0)))
     db.session.add(new_product)
     db.session.commit()
     return jsonify({"message": "Product added successfully!"}), 201
