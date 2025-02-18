@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -9,6 +9,9 @@ db = SQLAlchemy(app)
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
+    price = db.Column(db.Float, nullable=False)
+    category = db.Column(db.String(100), nullable=True)
     stock = db.Column(db.Integer, default=0)
 
 def create_database():
@@ -23,34 +26,24 @@ def index():
 @app.route('/product', methods=['POST'])
 def add_product():
     data = request.form
-    new_product = Product(name=data['name'], stock=int(data.get('stock', 0)))
+    new_product = Product(
+        name=data['name'],
+        description=data.get('description', ''),
+        price=float(data['price']),
+        category=data.get('category', ''),
+        stock=int(data['stock'])
+    )
     db.session.add(new_product)
     db.session.commit()
-    return jsonify({"message": "Product added successfully!"}), 201
+    return redirect('/')
 
-@app.route('/products', methods=['GET'])
-def get_products():
-    products = Product.query.all()
-    return jsonify([{ "id": p.id, "name": p.name, "stock": p.stock } for p in products])
-
-@app.route('/product/<int:id>', methods=['PUT'])
-def update_stock(id):
-    data = request.json
-    product = Product.query.get(id)
-    if not product:
-        return jsonify({"message": "Product not found!"}), 404
-    product.stock = data['stock']
-    db.session.commit()
-    return jsonify({"message": "Stock updated successfully!"})
-
-@app.route('/product/<int:id>', methods=['DELETE'])
+@app.route('/delete/<int:id>', methods=['POST'])
 def delete_product(id):
     product = Product.query.get(id)
-    if not product:
-        return jsonify({"message": "Product not found!"}), 404
-    db.session.delete(product)
-    db.session.commit()
-    return jsonify({"message": "Product deleted successfully!"})
+    if product:
+        db.session.delete(product)
+        db.session.commit()
+    return redirect('/')
 
 if __name__ == '__main__':
     create_database()
