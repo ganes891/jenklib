@@ -65,6 +65,26 @@ Parameterized declarative pipeline as a SL
 Quay.io
 podman login -u='ganesan_kandasamy+ganesh891' -p='XQM76MUEDN3DUQKJBDAWRJA87EDF0JE4LJ9CAC3QHDR9O1NJKJUNCNEKJ3WN798Q' quay.io
 
+####
+Quay image registry local :
+
+sudo mkdir -p /opt/quay/config
+sudo chmod 777 /opt/quay/config
+
+docker run -d --name quay \
+  -e QUAY_EXTERNAL_PORT=8080 \
+  -e QUAY_DB_HOST=postgres \
+  -e QUAY_DB_PORT=5432 \
+  -e QUAY_DB_USER=quay \
+  -e QUAY_DB_PASSWORD=quay_password \
+  -e QUAY_DB_DATABASE=quay \
+  -v /opt/quay/config:/datastorage \
+  -p 8080:8080 \
+  quay.io/projectquay/quay:latest
+######
+
+
+
 
 
 
