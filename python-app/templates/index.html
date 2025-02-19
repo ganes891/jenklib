@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>Product Inventory</h1>
+
+    <!-- Add New Product Form -->
     <h2>Add New Product</h2>
     <form action="/product" method="post">
         <label for="name">Name:</label>
@@ -42,12 +44,31 @@
             <td>{{ product.category }}</td>
             <td>{{ product.stock }}</td>
             <td>
-                <form action="/delete/{{ product.id }}" method="post">
+                <a href="/edit/{{ product.id }}">Edit</a> |
+                <form action="/delete/{{ product.id }}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
             </td>
         </tr>
         {% endfor %}
     </table>
+
+    <!-- Edit Product Form -->
+    {% if product_to_edit %}
+    <h2>Edit Product</h2>
+    <form action="/update/{{ product_to_edit.id }}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ product_to_edit.name }}" required><br><br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" value="{{ product_to_edit.description }}"><br><br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" value="{{ product_to_edit.price }}" required><br><br>
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" value="{{ product_to_edit.category }}"><br><br>
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" value="{{ product_to_edit.stock }}" required><br><br>
+        <button type="submit">Update Product</button>
+    </form>
+    {% endif %}
 </body>
 </html>
